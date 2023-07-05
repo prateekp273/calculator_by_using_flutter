@@ -26,7 +26,7 @@ class DashBoardScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Hello"),
         ),
-        body: Text('Hello World!', style: TextStyle(fontSize: 21),)
+        body: Text('Hello Everyone!', style: TextStyle(fontSize: 21),)
     );
   }
 }
