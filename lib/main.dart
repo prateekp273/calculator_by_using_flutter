@@ -11,7 +11,7 @@ class FlutterApp extends StatelessWidget {
     return MaterialApp(
       title: "FlutterApp",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.amber),
       home: const DashBoardScreen(),
     );
   }
@@ -34,7 +34,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Basic Calculations'),
+        title: const Text('Basic Calculator'),
       ),
       body: Container(
         color: Colors.blue.shade100,
