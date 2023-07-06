@@ -113,7 +113,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   padding: const EdgeInsets.all(21.0),
                   child: Text(
                     result,
-                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                    style: const TextStyle(fontSize: 25, color: Colors.greenAccent),
                   ),
                 ),
               ],
