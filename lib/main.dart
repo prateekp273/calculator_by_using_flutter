@@ -59,35 +59,63 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                var no1 = int.parse(no1Controller.text.toString());
-                var no2 = int.parse(no1Controller.text.toString());
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
 
-                var sum = no1 + no2;
+                          var sum = no1 + no2;
 
-                result = "The sum of $no1 and $no2 is $sum";
-
-                setState((){});
-                },
+                          setState(() {
+                            result = "The sum of $no1 and $no2 is $sum";
+                          });
+                        },
                         child: const Text('Add'),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
+
+                          var diff = no1 - no2;
+                          setState(() {
+                            result = "The difference of $no1 and $no2 is $diff";
+                          });
+                        },
                         child: const Text('Sub'),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
+
+                          var mul = no1 * no2;
+                          setState(() {
+                            result = "The multiplication of $no1 and $no2 is $mul";
+                          });
+                        },
                         child: const Text('Mult'),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
+
+                          var div = no1 / no2;
+                          setState(() {
+                            result = "The division of $no1 and $no2 is $div";
+                          });
+                        },
                         child: const Text('Div'),
                       ),
                     ],
                   ),
                 ),
-                const Padding(
-                  padding:  EdgeInsets.all(21.0),
-                    child:  Text(result, style: TextStyle(fontSize: 25, color: Colors.white),),)
+                Padding(
+                  padding: const EdgeInsets.all(21.0),
+                  child: Text(
+                    result,
+                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                  ),
+                ),
               ],
             ),
           ),
