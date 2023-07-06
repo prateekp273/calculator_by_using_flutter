@@ -28,39 +28,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   var no1Controller = TextEditingController();
   var no2Controller = TextEditingController();
 
-  int result = 0;
-
-  void addNumbers() {
-    setState(() {
-      int num1 = int.parse(no1Controller.text);
-      int num2 = int.parse(no2Controller.text);
-      result = num1 + num2;
-    });
-  }
-
-  void subtractNumbers() {
-    setState(() {
-      int num1 = int.parse(no1Controller.text);
-      int num2 = int.parse(no2Controller.text);
-      result = num1 - num2;
-    });
-  }
-
-  void multiplyNumbers() {
-    setState(() {
-      int num1 = int.parse(no1Controller.text);
-      int num2 = int.parse(no2Controller.text);
-      result = num1 * num2;
-    });
-  }
-
-  void divideNumbers() {
-    setState(() {
-      int num1 = int.parse(no1Controller.text);
-      int num2 = int.parse(no2Controller.text);
-      result = num1 ~/ num2; // Use integer division to get an integer result
-    });
-  }
+  var result = "";
 
   @override
   Widget build(BuildContext context) {
@@ -71,40 +39,57 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       body: Container(
         color: Colors.blue.shade100,
         child: Center(
-          child: Column(
-            children: [
-              TextField(
-                controller: no1Controller,
-              ),
-              TextField(
-                controller: no2Controller,
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: addNumbers,
-                    child: const Text('Add'),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  keyboardType: TextInputType.number,
+                  controller: no1Controller,
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  controller: no2Controller,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(21.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                var no1 = int.parse(no1Controller.text.toString());
+                var no2 = int.parse(no1Controller.text.toString());
+
+                var sum = no1 + no2;
+
+                result = "The sum of $no1 and $no2 is $sum";
+
+                setState((){});
+                },
+                        child: const Text('Add'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Sub'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Mult'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Div'),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: subtractNumbers,
-                    child: const Text('Sub'),
-                  ),
-                  ElevatedButton(
-                    onPressed: multiplyNumbers,
-                    child: const Text('Mult'),
-                  ),
-                  ElevatedButton(
-                    onPressed: divideNumbers,
-                    child: const Text('Div'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Result: $result',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
+                ),
+                const Padding(
+                  padding:  EdgeInsets.all(21.0),
+                    child:  Text(result, style: TextStyle(fontSize: 25, color: Colors.white),),)
+              ],
+            ),
           ),
         ),
       ),
