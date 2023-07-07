@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const FlutterApp());
@@ -34,7 +35,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Basic Calculator'),
+        title: const Text('Scientific Calculator'),
       ),
       body: Container(
         color: Colors.blue.shade100,
@@ -114,6 +115,45 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   child: Text(
                     result,
                     style: const TextStyle(fontSize: 25, color: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(21.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var squared = pow(no1, 2);
+                          setState(() {
+                            result = "The square of $no1 is $squared";
+                          });
+                        },
+                        child: const Text('Square'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var squareRoot = sqrt(no1);
+                          setState(() {
+                            result = "The square root of $no1 is $squareRoot";
+                          });
+                        },
+                        child: const Text('Square Root'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
+                          var power = pow(no1, no2);
+                          setState(() {
+                            result = "$no1 raised to the power of $no2 is $power";
+                          });
+                        },
+                        child: const Text('Power'),
+                      ),
+                    ],
                   ),
                 ),
               ],
