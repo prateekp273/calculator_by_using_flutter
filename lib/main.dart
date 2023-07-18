@@ -76,26 +76,26 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   children: [
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((no1, no2) => no1 + no2, 'Add');
+                        calculateResult((double no1, double no2) => no1 + no2, 'Add');
                       },
                       text: 'Add',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((no1, no2) => no1 - no2, 'Subtract');
+                        calculateResult((double no1, double no2) => no1 - no2, 'Subtract');
                       },
                       text: 'Subtract',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((no1, no2) => no1 * no2, 'Multiply');
+                        calculateResult((double no1, double no2) => no1 * no2, 'Multiply');
                       },
                       text: 'Multiply',
                     ),
                     CalculatorButton(
                       onPressed: () {
                         calculateResult(
-                                (no1, no2) => no2 != 0 ? no1 / no2 : double.infinity,
+                                (double no1, double no2) => no2 != 0 ? no1 / no2 : double.infinity,
                             'Divide');
                       },
                       text: 'Divide',
@@ -108,27 +108,27 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   children: [
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((no1, _) => pow(no1, 2), 'Square');
+                        calculateResult((double no1, double _) => pow(no1, 2), 'Square');
                       },
                       text: 'Square',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((no1, _) => pow(no1, 3), 'Cube');
+                        calculateResult((double no1, double _) => pow(no1, 3), 'Cube');
                       },
                       text: 'Cube',
                     ),
                     CalculatorButton(
                       onPressed: () {
                         calculateResult(
-                                (no1, no2) => no1 % no2, 'Remainder');
+                                (double no1, double no2) => no1 % no2, 'Remainder');
                       },
                       text: 'Remainder',
                     ),
                     CalculatorButton(
                       onPressed: () {
                         calculateResult(
-                                (no1, no2) => pow(no1, no2), 'Power');
+                                (double no1, double no2) => pow(no1, no2), 'Power');
                       },
                       text: 'Power',
                     ),
