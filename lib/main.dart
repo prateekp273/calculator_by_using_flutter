@@ -38,7 +38,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         title: const Text('Scientific Calculator'),
       ),
       body: Container(
-        color: Colors.blue.shade100,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade200, Colors.blue.shade100],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -48,118 +54,149 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 TextField(
                   keyboardType: TextInputType.number,
                   controller: no1Controller,
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Enter number 1',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
+                SizedBox(height: 10),
                 TextField(
                   keyboardType: TextInputType.number,
                   controller: no2Controller,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(21.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var no2 = int.parse(no2Controller.text.toString());
-
-                          var sum = no1 + no2;
-
-                          setState(() {
-                            result = "The sum of $no1 and $no2 is $sum";
-                          });
-                        },
-                        child: const Text('Add'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var no2 = int.parse(no2Controller.text.toString());
-
-                          var diff = no1 - no2;
-                          setState(() {
-                            result = "The difference of $no1 and $no2 is $diff";
-                          });
-                        },
-                        child: const Text('Sub'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var no2 = int.parse(no2Controller.text.toString());
-
-                          var mul = no1 * no2;
-                          setState(() {
-                            result = "The multiplication of $no1 and $no2 is $mul";
-                          });
-                        },
-                        child: const Text('Mult'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var no2 = int.parse(no2Controller.text.toString());
-
-                          var div = no1 / no2;
-                          setState(() {
-                            result = "The division of $no1 and $no2 is $div";
-                          });
-                        },
-                        child: const Text('Div'),
-                      ),
-                    ],
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Enter number 2',
+                    border: OutlineInputBorder(),
                   ),
                 ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult((no1, no2) => no1 + no2, 'Add');
+                      },
+                      text: 'Add',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult((no1, no2) => no1 - no2, 'Subtract');
+                      },
+                      text: 'Subtract',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult((no1, no2) => no1 * no2, 'Multiply');
+                      },
+                      text: 'Multiply',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult(
+                                (no1, no2) => no2 != 0 ? no1 / no2 : double.infinity,
+                            'Divide');
+                      },
+                      text: 'Divide',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult((no1, _) => pow(no1, 2), 'Square');
+                      },
+                      text: 'Square',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult((no1, _) => pow(no1, 3), 'Cube');
+                      },
+                      text: 'Cube',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult(
+                                (no1, no2) => no1 % no2, 'Remainder');
+                      },
+                      text: 'Remainder',
+                    ),
+                    CalculatorButton(
+                      onPressed: () {
+                        calculateResult(
+                                (no1, no2) => pow(no1, no2), 'Power');
+                      },
+                      text: 'Power',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.all(21.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     result,
-                    style: const TextStyle(fontSize: 25, color: Colors.green),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(21.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var squared = pow(no1, 2);
-                          setState(() {
-                            result = "The square of $no1 is $squared";
-                          });
-                        },
-                        child: const Text('Square'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var squareRoot = sqrt(no1);
-                          setState(() {
-                            result = "The square root of $no1 is $squareRoot";
-                          });
-                        },
-                        child: const Text('Square Root'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var no1 = int.parse(no1Controller.text.toString());
-                          var no2 = int.parse(no2Controller.text.toString());
-                          var power = pow(no1, no2);
-                          setState(() {
-                            result = "$no1 raised to the power of $no2 is $power";
-                          });
-                        },
-                        child: const Text('Power'),
-                      ),
-                    ],
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void calculateResult(double Function(double, double) operation, String operationName) {
+    try {
+      var no1 = double.parse(no1Controller.text);
+      var no2 = double.parse(no2Controller.text);
+      var resultValue = operation(no1, no2);
+      setState(() {
+        result = 'The $operationName of $no1 and $no2 is ${resultValue.toStringAsFixed(2)}';
+      });
+    } catch (e) {
+      setState(() {
+        result = 'Error: Please enter valid numbers';
+      });
+    }
+  }
+}
+
+class CalculatorButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String text;
+
+  const CalculatorButton({
+    required this.onPressed,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        primary: Colors.blue,
+        onPrimary: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Colors.blue, width: 2),
+        ),
+        elevation: 5,
+        shadowColor: Colors.blue.shade200,
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18),
       ),
     );
   }
