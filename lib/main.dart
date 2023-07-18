@@ -7,6 +7,7 @@ void main() {
 
 class FlutterApp extends StatelessWidget {
   const FlutterApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,103 +49,106 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: no1Controller,
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: 'Enter number 1',
-                    border: OutlineInputBorder(),
+            child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: no1Controller,
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                    decoration: InputDecoration(
+                      labelText: 'Enter number 1',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: no2Controller,
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: 'Enter number 2',
-                    border: OutlineInputBorder(),
+                  SizedBox(height: 10),
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: no2Controller,
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                    decoration: InputDecoration(
+                      labelText: 'Enter number 2',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double no2) => no1 + no2, 'Add');
-                      },
-                      text: 'Add',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double no2) => no1 - no2, 'Subtract');
-                      },
-                      text: 'Subtract',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double no2) => no1 * no2, 'Multiply');
-                      },
-                      text: 'Multiply',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult(
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double no2) => no1 + no2, 'Add');
+                        },
+                        text: 'Add',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double no2) => no1 - no2, 'Subtract');
+                        },
+                        text: 'Subtract',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double no2) => no1 * no2, 'Multiply');
+                        },
+                        text: 'Multiply',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult(
                                 (double no1, double no2) => no2 != 0 ? no1 / no2 : double.infinity,
-                            'Divide');
-                      },
-                      text: 'Divide',
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double _) => pow(no1, 2).toDouble(), 'Square');
-                      },
-                      text: 'Square',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double _) => pow(no1, 3).toDouble(), 'Cube');
-                      },
-                      text: 'Cube',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double no2) => no1 % no2, 'Remainder');
-                      },
-                      text: 'Remainder',
-                    ),
-                    CalculatorButton(
-                      onPressed: () {
-                        calculateResult((double no1, double no2) => pow(no1, no2).toDouble(), 'Power');
-                      },
-                      text: 'Power',
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    result,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
+                            'Divide',
+                          );
+                        },
+                        text: 'Divide',
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double _) => pow(no1, 2).toDouble(), 'Square');
+                        },
+                        text: 'Square',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double _) => pow(no1, 3).toDouble(), 'Cube');
+                        },
+                        text: 'Cube',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double no2) => no1 % no2, 'Remainder');
+                        },
+                        text: 'Remainder',
+                      ),
+                      CalculatorButton(
+                        onPressed: () {
+                          calculateResult((double no1, double no2) => pow(no1, no2).toDouble(), 'Power');
+                        },
+                        text: 'Power',
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      result,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
