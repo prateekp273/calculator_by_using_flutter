@@ -108,27 +108,25 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   children: [
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((double no1, double _) => pow(no1, 2), 'Square');
+                        calculateResult((double no1, double _) => pow(no1, 2).toDouble(), 'Square');
                       },
                       text: 'Square',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult((double no1, double _) => pow(no1, 3), 'Cube');
+                        calculateResult((double no1, double _) => pow(no1, 3).toDouble(), 'Cube');
                       },
                       text: 'Cube',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult(
-                                (double no1, double no2) => no1 % no2, 'Remainder');
+                        calculateResult((double no1, double no2) => no1 % no2, 'Remainder');
                       },
                       text: 'Remainder',
                     ),
                     CalculatorButton(
                       onPressed: () {
-                        calculateResult(
-                                (double no1, double no2) => pow(no1, no2), 'Power');
+                        calculateResult((double no1, double no2) => pow(no1, no2).toDouble(), 'Power');
                       },
                       text: 'Power',
                     ),
@@ -158,7 +156,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     try {
       var no1 = double.parse(no1Controller.text);
       var no2 = double.parse(no2Controller.text);
-      var resultValue = operation(no1, no2);
+      double resultValue = operation(no1, no2); // Cast the result to double explicitly
       setState(() {
         result = 'The $operationName of $no1 and $no2 is ${resultValue.toStringAsFixed(2)}';
       });
